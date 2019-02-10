@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="https://fonts.googleapis.com/css?family=Kanit:400,700&amp;subset=latin-ext" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="styles.css">
+  <title>Kalkulator Agaty</title>
+</head>
+
+<body>
+  <nav>
+    <h1 class="text-center font-weight-bold">Kalkulator Agaty</h1>
+  </nav>
+  <div class="container">
+    <form class="form entry">
+      <h3 class="text-center font-weight-bold">Wprowadź dane:</h3>
+      <div class="form-group">
+        <label for="brutto">Kwota brutto w zł:</label>
+        <input id="brutto" class="form-control" type="number">
+
+
+        <div class="form-check miejsce">
+          <input id="pracaW" class="form-check-input" type="radio" name="miejsce" value="pracaW" checked>
+          <label for="pracaW">Praca w miejscu zamieszkania</label><br>
+
+          <input id="pracaPoza" class="form-check-input" type="radio" name="miejsce" value="pracaPoza">
+          <label for="pracaPoza">Praca poza miejscem zamieszkania</label><br>
+        </div>
+        <div class="form-check">
+          <input id="autorskie" name="autorskie" type="checkbox">
+          <label for="pracaPoza">Autorskie koszty uzyskania przychodu</label><br>
+        </div>
+        <label for="udzial">Udział dzieła w %:</label>
+        <input id="udzial" name="udzial" class="form-control udzial" type="number" disabled>
+        <label for="dniWolne">Liczba dni wolnych od pracy pomniejszające KUP:</label>
+        <input id="dniWolne" name="dniWolne" class="form-control" type="number" disabled>
+      </div>
+    </form>
+    <div class="calculated">
+      <h3 class="text-center font-weight-bold">Obliczenia:</h3>
+      <p>Składki:</p>
+      <ul>
+        <li id="emerytalna">emerytalna:</li>
+        <li id="rentowa">rentowa:</li>
+        <li id="chorobowa">chorobowa:</li>
+      </ul>
+      <p id="kup">KUP:</p>
+      <p id="podatek">Podatek:</p>
+      <p id="zdrowotna">Składka zdrowotna:</p>
+      <p id="netto">Do zapłaty:</p>
+    </div>
+  </div>
+  <footer class="text-center footer">© Paweł Karcz 2019 <br />Wersja 0.1 10.02.2019</footer>
+  <script src="index.js">
+
+  </script>
+</body>
+
+</html>

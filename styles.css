@@ -1,0 +1,45 @@
+* {
+  /* margin: 0 auto */
+}
+
+body {
+  font-family: 'Kanit', sans-serif;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.9),
+    rgba(255, 255, 255, 0.9)),
+    url(img/money-2179393_1920.jpg);
+  background-size: contain;
+  background-repeat: repeat-y;
+  background-position: center;
+}
+
+nav {
+  background-color: #111;
+  color: white;
+  /* height: 90px; */
+}
+
+h1 {
+  height: 100%;
+  margin: auto;
+  padding: 20px
+}
+
+.footer {
+  /* background-color: black; */
+  height: 200px;
+  color: grey
+}
+
+.calculated, .entry {
+  border-bottom: 2px solid #bbb;
+  padding: 2%;
+}
+
+@media (min-width: 700px) and (orientation: landscape) {
+  .calculated, .form {
+    width: 50%;
+    margin: auto;
+  }
+  .footer {width: 100%}
+}
