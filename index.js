@@ -52,16 +52,17 @@ function obliczenia() {
   var dzielo = document.querySelector("#autorskie").checked;
   var dzieloPercent = document.querySelector("#udzial").value;
   var numerOfDays = document.querySelector("#dniWolne").value;
-  var sickDays = document.querySelector("#sickDays").value
+  var sickDays = document.querySelector("#sickDays").value;
+  var sklWypProc = document.querySelector("#sklWyp").value;
 
   console.log(brutto);
   console.log("Wybrana opcja miejsca: " + pozaMiejscemZam);
   console.log("Wybrana opcja dzieła: " + dzielo);
   console.log("Wpisana wartość %: " + dzieloPercent);
   console.log("Wolne dni: " + numerOfDays);
+  console.log("Składka wypadkowa w %: " + sklWypProc);
 
 
-  
 
   // CHOROBOWE:
   var podstawNalChor = (brutto - (brutto * 0.1371)).toFixed(2);
@@ -94,10 +95,10 @@ function obliczenia() {
   }
   console.log("Stawka po odliczeniu % to " + stawkaDzienna);
 
-var zasilekChorobowy = (sickDays *stawkaDzienna);
-var wynagrodzZaDniPrzepracowane = (brutto - (brutto/30 * sickDays));
+  var zasilekChorobowy = (sickDays * stawkaDzienna);
+  var wynagrodzZaDniPrzepracowane = (brutto - (brutto / 30 * sickDays));
 
-console.log("Zasiłek chorobowy to "+ zasilekChorobowy+" a wynagrodzenie za dni przepracowane to "+ wynagrodzZaDniPrzepracowane)
+  console.log("Zasiłek chorobowy to " + zasilekChorobowy + " a wynagrodzenie za dni przepracowane to " + wynagrodzZaDniPrzepracowane)
 
 
   // KUP:
@@ -174,14 +175,24 @@ console.log("Zasiłek chorobowy to "+ zasilekChorobowy+" a wynagrodzenie za dni 
   console.log("Zaliczka na podatek dochodowy = " + zaliczkaNaPodatekDochodowy);
 
   // DO WYPLATY:
-console.log("Wynagrodznie z dni przepr"+wynagrodzZaDniPrzepracowane);
-console.log("Zasiłek chorobowy"+zasilekChorobowy);
-console.log("Składka połecz"+sklSpoleczna);
-console.log("SKładka zdr"+skladkaZdrowotna);
-console.log("Zaliczka na podat"+ zaliczkaNaPodatekDochodowy)
+  console.log("Wynagrodznie z dni przepr" + wynagrodzZaDniPrzepracowane);
+  console.log("Zasiłek chorobowy" + zasilekChorobowy);
+  console.log("Składka połecz" + sklSpoleczna);
+  console.log("SKładka zdr" + skladkaZdrowotna);
+  console.log("Zaliczka na podat" + zaliczkaNaPodatekDochodowy)
 
-  var netto = (wynagrodzZaDniPrzepracowane + zasilekChorobowy- sklSpoleczna - skladkaZdrowotna - zaliczkaNaPodatekDochodowy).toFixed(2);
-  console.log("do wypł"+ netto)
+  var netto = (wynagrodzZaDniPrzepracowane + zasilekChorobowy - sklSpoleczna - skladkaZdrowotna - zaliczkaNaPodatekDochodowy).toFixed(2);
+  console.log("do wypł" + netto)
+
+
+  // SKŁADKI PRACODAWCY
+  var skladkaEmerytalnaPrac = (wynagrodzZaDniPrzepracowane * 0.0976);
+  var skladkaRentowaPrac = (wynagrodzZaDniPrzepracowane * 0.065);
+  var skladkaWypadkowa = (wynagrodzZaDniPrzepracowane * (sklWypProc) / 100);
+  var funduszPracy = (brutto * 0.0245);
+  var fgsp = (brutto * 0.01);
+  var kosztPracodawcy = skladkaEmerytalnaPrac + skladkaRentowaPrac + skladkaWypadkowa + funduszPracy + fgsp;
+  console.log("Koszt pracodawcy = "+ kosztPracodawcy)
 
   console.log("****************************************************************");
   // Outputting the data:
@@ -193,8 +204,16 @@ console.log("Zaliczka na podat"+ zaliczkaNaPodatekDochodowy)
   document.querySelector("#kup").innerHTML = "KUP: " + kup.toFixed(2) + " zł";
   document.querySelector("#podatek").innerHTML = "Podatek: " + zaliczkaNaPodatekDochodowy.toFixed(2) + " zł";
   document.querySelector("#zdrowotna").innerHTML = "Składka zdrowotna: " + skladkaZdrowotna + " zł";
-  document.querySelector("#zasilekChorobowy").innerHTML = "Zasiłek chorobowy: "+ zasilekChorobowy + " zł";
+  document.querySelector("#zasilekChorobowy").innerHTML = "Zasiłek chorobowy: " + zasilekChorobowy.toFixed(2) + " zł";
   document.querySelector("#netto").innerHTML = "Do wypłaty: <strong> " + netto + "</strong> zł";
   document.querySelector("#zdrOdl").innerHTML = "Składka zdrowotna odliczana od podatku: " + skladkaZdrowotnaOdl + " zł";
-  document.querySelector("#podstawaOp").innerHTML = "Podstawa opodatkowania: " + podstawaOpodatkowania+" zł";
+  document.querySelector("#podstawaOp").innerHTML = "Podstawa opodatkowania: " + podstawaOpodatkowania + " zł";
+  document.querySelector("#sklEmPr").innerHTML = "emerytalna: " + skladkaEmerytalnaPrac.toFixed(2) + " zł";
+  document.querySelector("#sklRenPr").innerHTML = "rentowa: " + skladkaRentowaPrac.toFixed(2) + " zł";
+  document.querySelector("#wypadkowa").innerHTML = "wypadkowa: " + skladkaWypadkowa.toFixed(2) + " zł";
+  document.querySelector("#funPr").innerHTML = "Fundusz Pracy: " + funduszPracy.toFixed(2) + " zł";
+  document.querySelector("#fgsp").innerHTML = "FGŚP: " + fgsp.toFixed(2) + " zł";
+  document.querySelector("#razSkPr").innerHTML = "Razem składki pracodawcy: " + kosztPracodawcy.toFixed(2) + " zł";
+
+  
 }

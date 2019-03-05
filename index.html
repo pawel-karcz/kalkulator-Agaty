@@ -8,6 +8,8 @@
   <link href="https://fonts.googleapis.com/css?family=Kanit:400,700&amp;subset=latin-ext" rel="stylesheet">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
     crossorigin="anonymous">
+
+
   <link rel="stylesheet" href="styles.css">
   <title>Kalkulator Agaty</title>
 </head>
@@ -17,29 +19,32 @@
     <h1 class="text-center font-weight-bold">Kalkulator Agaty</h1>
   </nav>
   <div class="container">
-    <form class="form entry">
+    <form class="form entry ">
       <h3 class="text-center font-weight-bold">Wprowadź dane:</h3>
       <div class="form-group">
-        <div class="brut">
-          <label for="brutto">Kwota brutto w zł:</label>
-          <input id="brutto" class="form-control" type="number">
+        <div class="brut form-group row">
+          <label for="brutto">Kwota brutto :</label>
+          <div class="col-sm-10">
+          <input id="brutto" class="form-control" type="number" placeholder="Kwota brutto">
+        </div>
         </div>
 
         <div class="form-check sickleave">
           <input id="sickleave" name="sickleave" type="checkbox">
           <label for="sickleave">Zwolnienie chorobowe / opiekuńcze</label><br>
-          <label for="sickDays">Liczba dni chorobowego:</label>
-          <input id="sickDays" name="sickDays" class="form-control" type="number" disabled>
+          <!-- <label for="sickDays">Liczba dni chorobowego:</label> -->
+          <input id="sickDays" name="sickDays" class="form-control col-sm-10" type="number" placeholder="Liczba dni chorobowego"
+            min="0" max="30" disabled>
+          <div class="malade form-check-inline">
+            <input id="choroba" class="form-check-input" type="radio" name="radio" value="choroba" disabled checked>
+            <label for="choroba">Zasiłek chorobowy zwykły 80%</label><br>
 
-          <input id="choroba" class="form-check-input" type="radio" name="radio" value="choroba" disabled checked>
-          <label for="choroba">Zasiłek chorobowy zwykły 80%</label><br>
+            <input id="szpital" class="form-check-input" type="radio" name="radio" value="szpital" disabled>
+            <label for="szpital">Pobyt w szpitalu 70%</label><br>
 
-          <input id="szpital" class="form-check-input" type="radio" name="radio" value="szpital" disabled>
-          <label for="szpital">Pobyt w szpitalu 70%</label><br>
-
-          <input id="wypadek" class="form-check-input" type="radio" name="radio" value="wypadek" disabled>
-          <label for="wypadek">Wypadek przy pracy lub ciąża</label><br>
-
+            <input id="wypadek" class="form-check-input" type="radio" name="radio" value="wypadek" disabled>
+            <label for="wypadek">Wypadek przy pracy lub ciąża</label><br>
+          </div>
 
         </div>
 
@@ -47,7 +52,7 @@
 
 
 
-        <div class="form-check miejsce">
+        <div class="form-check-center miejsce">
           <input id="pracaW" class="form-check-input" type="radio" name="miejsce" value="pracaW" checked>
           <label for="pracaW">Praca w miejscu zamieszkania</label><br>
 
@@ -62,14 +67,14 @@
         <div class="form-check autorskie">
           <input id="autorskie" name="autorskie" type="checkbox">
           <label for="pracaPoza">Autorskie koszty uzyskania przychodu</label><br>
-          <label for="udzial">Udział dzieła w %:</label>
-          <input id="udzial" name="udzial" class="form-control udzial" type="number" disabled>
-          <label for="dniWolne">Liczba dni wolnych od pracy pomniejszające KUP:</label>
-          <input id="dniWolne" name="dniWolne" class="form-control" type="number" disabled>
+          <!-- <label for="udzial">Udział dzieła w %:</label> -->
+          <input id="udzial" name="udzial" class="form-control udzial" type="number" placeholder="Udział dzieła w %:" disabled>
+          <!-- <label for="dniWolne">Liczba dni wolnych od pracy pomniejszające KUP:</label> -->
+          <input id="dniWolne" name="dniWolne" class="form-control" type="number" placeholder="Liczba dni wolnych od pracy pomniejszające KUP:" disabled>
         </div>
         <div class="sklWyp">
-          <label for="sklWyp">% składka wypadkowa:</label>
-          <input id="sklWyp" name="sklWyp" class="form-control" type="number">
+          <!-- <label for="sklWyp">% składka wypadkowa:</label> -->
+          <input id="sklWyp" name="sklWyp" class="form-control" type="number" placeholder="% składka wypadkowa:" >
         </div>
 
       </div>
@@ -91,16 +96,16 @@
       <p id="netto">Do zapłaty:</p>
       <p>Składki pracodawcy</p>
       <ul>
-        <li>emerytalna: <em>coming soon</em></li>
-        <li>rentowa: <em>coming soon</em></li>
-        <li>wypadkowa: <em>coming soon</em></li>
-        <li>Fundusz Pracy: <em>coming soon</em></li>
-        <li>FGŚP: <em>coming soon</em></li>
+        <li id="sklEmPr">emerytalna:</li>
+        <li id="sklRenPr">rentowa:</li>
+        <li id="wypadkowa">wypadkowa:</li>
+        <li id="funPr">Fundusz Pracy:</li>
+        <li id="fgsp">FGŚP:</li>
       </ul>
-      <p>Razem składki pracodawcy <em>coming soon</em>:</p>
+      <p id="razSkPr">Razem składki pracodawcy:</p>
     </div>
   </div>
-  <footer class="text-center footer">© Paweł Karcz 2019 <br />Wersja 0.1 10.02.2019</footer>
+  <footer class="text-center footer">© Paweł Karcz 2019 <br />Wersja 0.2 05.03.2019</footer>
   <script src="index.js">
 
   </script>
