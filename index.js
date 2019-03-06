@@ -4,34 +4,19 @@ var autorskie = document.querySelector("input[name=autorskie]");
 
 autorskie.addEventListener('change', function () {
   if (this.checked) {
-    document.querySelector("input[name=udzial]").removeAttribute("disabled");
-    document.querySelector("input[name=dniWolne]").removeAttribute("disabled");
+    document.querySelector("input[name=udzial]").classList.remove("hidden");
+    document.querySelector("input[name=dniWolne]").classList.remove("hidden");
     console.log("Checked");
 
   } else {
-    document.querySelector("input[name=udzial]").setAttribute("disabled", "disabled");
-    document.querySelector("input[name=dniWolne]").setAttribute("disabled", "disabled");
+    document.querySelector("input[name=udzial]").classList.add("hidden");
+    document.querySelector("input[name=dniWolne]").classList.add("hidden");
     console.log("Unchecked");
 
   }
 })
 
-var sickleave = document.querySelector("input[name=sickleave]");
-sickleave.addEventListener('change', function () {
-  if (this.checked) {
-    document.querySelector("input[name=sickDays]").removeAttribute("disabled");
-    document.querySelector("#choroba").removeAttribute("disabled");
-    document.querySelector("#szpital").removeAttribute("disabled");
-    document.querySelector("#wypadek").removeAttribute("disabled");
-    console.log("Sickleave checked");
-  } else {
-    document.querySelector("input[name=sickDays]").setAttribute("disabled", "disabled");
-    document.querySelector("#choroba").setAttribute("disabled", "disabled");
-    document.querySelector("#szpital").setAttribute("disabled", "disabled");
-    document.querySelector("#wypadek").setAttribute("disabled", "disabled");
-    console.log("Sickleave unchecked");
-  }
-})
+
 
 
 
@@ -62,6 +47,29 @@ function obliczenia() {
   console.log("Wolne dni: " + numerOfDays);
   console.log("Składka wypadkowa w %: " + sklWypProc);
 
+  // *** Hidding sickleave days:
+  var sickleave = document.querySelector('#sickleave option:checked').value;
+  console.log("Zwolnienie: " + sickleave);
+  if (sickleave == "brak") {
+    // document.querySelector("input[name=sickDays]").setAttribute("disabled", "disabled");
+    document.querySelector("input[name=sickDays]").classList.add("hidden");
+    sickDays = 0;
+
+  } else if (sickleave == "wypadek") {
+
+    document.querySelector("input[name=sickDays]").classList.remove("hidden")
+  } else if (sickleave == "choroba") {
+
+    document.querySelector("input[name=sickDays]").classList.remove("hidden")
+  } else if (sickleave == "szpital") {
+
+    document.querySelector("input[name=sickDays]").classList.remove("hidden")
+  } else {
+    console.log("WTF")
+  }
+
+
+
 
 
   // CHOROBOWE:
@@ -79,7 +87,8 @@ function obliczenia() {
 
   var stawkaDzienna = (podstawNalChor / 30).toFixed(2);
   console.log("Stawka to " + stawkaDzienna);
-  var radio = document.querySelector("input[name=radio]:checked").value;
+  var radio = sickleave
+  // document.querySelector("input[name=radio]:checked").value;
   console.log("Wybrana opcja:" + radio);
 
   var choroba = 0.8;
@@ -131,19 +140,19 @@ function obliczenia() {
   console.log("Brutto po odliczeniu wolnego = " + bruttoKup)
 
   // SKLADKI:
-  var emerytalna = wynagrodzZaDniPrzepracowane * 0.0976;
+  var emerytalna = Math.round(wynagrodzZaDniPrzepracowane * 0.0976 * 100) / 100;
   console.log("emerytalna = " + emerytalna);
 
-  var rentowa = wynagrodzZaDniPrzepracowane * 0.015;
+  var rentowa = Math.round(wynagrodzZaDniPrzepracowane * 0.015 * 100) / 100;
   console.log("rentowa = " + rentowa);
 
-  var chorobowa = wynagrodzZaDniPrzepracowane * 0.0245;
+  var chorobowa = Math.round(wynagrodzZaDniPrzepracowane * 0.0245 * 100) / 100;
   console.log("chorobowa = " + chorobowa);
 
   var sklSpoleczna = emerytalna + rentowa + chorobowa;
   console.log("Składki społeczne = " + sklSpoleczna);
 
-  var skladkaZdrowotna = ((wynagrodzZaDniPrzepracowane + zasilekChorobowy - sklSpoleczna) * 0.09).toFixed(2);
+  var skladkaZdrowotna = Math.round((wynagrodzZaDniPrzepracowane + zasilekChorobowy - sklSpoleczna) * 0.09 * 100) / 100;
   console.log("Składka zdrowotna = " + skladkaZdrowotna);
 
   var skladkaZdrowotnaOdl = ((wynagrodzZaDniPrzepracowane + zasilekChorobowy - sklSpoleczna) * 0.0775).toFixed(2);
@@ -190,9 +199,9 @@ function obliczenia() {
   var skladkaRentowaPrac = (wynagrodzZaDniPrzepracowane * 0.065);
   var skladkaWypadkowa = (wynagrodzZaDniPrzepracowane * (sklWypProc) / 100);
   var funduszPracy = (brutto * 0.0245);
-  var fgsp = (brutto * 0.01);
+  var fgsp = (brutto * 0.001);
   var kosztPracodawcy = skladkaEmerytalnaPrac + skladkaRentowaPrac + skladkaWypadkowa + funduszPracy + fgsp;
-  console.log("Koszt pracodawcy = "+ kosztPracodawcy)
+  console.log("Koszt pracodawcy = " + kosztPracodawcy)
 
   console.log("****************************************************************");
   // Outputting the data:

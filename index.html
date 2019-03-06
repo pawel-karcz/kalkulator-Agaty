@@ -20,32 +20,26 @@
   </nav>
   <div class="container">
     <form class="form entry ">
+
       <h3 class="text-center font-weight-bold">Wprowadź dane:</h3>
       <div class="form-group">
         <div class="brut form-group row">
           <label for="brutto">Kwota brutto :</label>
-          <div class="col-sm-10">
-          <input id="brutto" class="form-control" type="number" placeholder="Kwota brutto">
-        </div>
-        </div>
-
-        <div class="form-check sickleave">
-          <input id="sickleave" name="sickleave" type="checkbox">
-          <label for="sickleave">Zwolnienie chorobowe / opiekuńcze</label><br>
-          <!-- <label for="sickDays">Liczba dni chorobowego:</label> -->
-          <input id="sickDays" name="sickDays" class="form-control col-sm-10" type="number" placeholder="Liczba dni chorobowego"
-            min="0" max="30" disabled>
-          <div class="malade form-check-inline">
-            <input id="choroba" class="form-check-input" type="radio" name="radio" value="choroba" disabled checked>
-            <label for="choroba">Zasiłek chorobowy zwykły 80%</label><br>
-
-            <input id="szpital" class="form-check-input" type="radio" name="radio" value="szpital" disabled>
-            <label for="szpital">Pobyt w szpitalu 70%</label><br>
-
-            <input id="wypadek" class="form-check-input" type="radio" name="radio" value="wypadek" disabled>
-            <label for="wypadek">Wypadek przy pracy lub ciąża</label><br>
+          <div class="col-sm-4">
+            <input id="brutto" class="form-control" type="number" placeholder="Kwota brutto">
           </div>
+        </div>
 
+        <div class="form-check row sickleave" id="sickleave">
+          <p>Zwolnienie chorobowe / opiekuńcze:</p>
+          <select class="form-control col-sm-5" name="" id="">
+            <option value="brak">Brak zwolnienia</option>
+            <option value="choroba">Zasiłek chorobowy zwykły 80%</option>
+            <option value="szpital">Pobyt w szpitalu 70%</option>
+            <option value="wypadek">Wypadek przy pracy lub ciąża</option>
+          </select>
+          <input id="sickDays" name="sickDays" class="form-control col-sm-5" type="number" placeholder="Liczba dni zwolnienia"
+            min="0" max="30">
         </div>
 
 
@@ -68,13 +62,13 @@
           <input id="autorskie" name="autorskie" type="checkbox">
           <label for="pracaPoza">Autorskie koszty uzyskania przychodu</label><br>
           <!-- <label for="udzial">Udział dzieła w %:</label> -->
-          <input id="udzial" name="udzial" class="form-control udzial" type="number" placeholder="Udział dzieła w %:" disabled>
+          <input id="udzial" name="udzial" class="form-control col-sm-5 udzial hidden" type="number" placeholder="Udział dzieła w %:">
           <!-- <label for="dniWolne">Liczba dni wolnych od pracy pomniejszające KUP:</label> -->
-          <input id="dniWolne" name="dniWolne" class="form-control" type="number" placeholder="Liczba dni wolnych od pracy pomniejszające KUP:" disabled>
+          <input id="dniWolne" name="dniWolne" class="form-control col-sm-5 hidden" type="number" placeholder="Liczba dni wolnych od pracy pomniejszające KUP:">
         </div>
         <div class="sklWyp">
-          <!-- <label for="sklWyp">% składka wypadkowa:</label> -->
-          <input id="sklWyp" name="sklWyp" class="form-control" type="number" placeholder="% składka wypadkowa:" >
+          <label for="sklWyp">% składka wypadkowa:</label>
+          <input id="sklWyp" name="sklWyp" class="form-control col-sm-5" type="number" placeholder="%">
         </div>
 
       </div>
