@@ -215,5 +215,4 @@ function obliczenia() {
   document.querySelector("#fgsp").innerHTML = "FGŚP: " + fgsp.toFixed(2) + " zł";
   document.querySelector("#razSkPr").innerHTML = "Razem składki pracodawcy: " + kosztPracodawcy.toFixed(2) + " zł";
 
-  
 }
